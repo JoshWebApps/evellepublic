@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --font-helvetica: "helvetica";
+  --color-primary: #f8fcff;
+}
+
+* {
+  @apply scroll-smooth;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-group(root) {
+  z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+  will-change: transform, opacity;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 1000;
+  animation: fade-in 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+  animation: fade-out 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
